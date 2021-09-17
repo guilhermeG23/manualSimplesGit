@@ -341,7 +341,49 @@ Guardar alteração de forma temporaria, Ex:
 git stash
 ```
 
+Listar os stash's criados:
+```
+git stash list
+```
 
+Para aplicar as modificações em stash, use:
+```
+git stash apply <numero da stash iniciando do 0> 
+```
+
+Lembrando, mesmo dando apply, ela ainda existe na stash, tem que remover depois.
+
+Par aplicar o ultimo stash e deletar ele, use:
+```
+git stash pop
+```
+
+Para deletar uma stash, faça:
+```
+git stash drop <numero da stash iniciando do 0> 
+```
+
+---
+
+#### Diferença entre commits
+
+Existe o comando ```diff``` no linux que mostra as diferenças entre arquivos, sendo assim, existe no git, ex:
+
+```
+git diff <commit> <commit>
+```
+
+---
+
+#### Criar uma marcação entre os commit's
+
+Tag são pontos "fixos" dentro dos commits, onde você sabe que determinado código estará de determinada forma.
+
+```
+git tag -a <nome da tag> "mensagem opcional da tela"
+```
+
+A tag vira um marco, permitindo usar ela para fazer pull e push.
 
 ---
 
@@ -351,3 +393,6 @@ Boas práticas sobre o uso do commit:
 
 * Nunca commit código que não funcione;
 * Só faça isso quando algo é implementado ou alterado com sucesso;
+
+---
+
