@@ -387,12 +387,40 @@ A tag vira um marco, permitindo usar ela para fazer pull e push.
 
 ---
 
+#### Unindo commits
+
+Isso é feito para facilitar a verificação dos commits realizados do projeto:
+
+```
+git rebase -i HEAD~<commit alvo ou valor>
+```
+
+O HEAD é o commit atual e o alvo é o número de commit's realizados até o HEAD ou a chave do log do commit.
+
+Após isso, vai ser aberto uma área para editar, onde vai ter escrito no topo os commit's com o ```pick``` na frente, o ```pick``` deve ser único por motivos que ele via o commit principal, o restante deve substituir por ```s```
+
+---
+
 #### Boas práticas
 
 Boas práticas sobre o uso do commit:
 
 * Nunca commit código que não funcione;
 * Só faça isso quando algo é implementado ou alterado com sucesso;
+
+---
+
+#### Github Issues
+
+Na tradução literal é a lista de problemas, lá se registra problemas, reports e demais mesmo que você não seja um ativo dentro do projeto, é uma forma de contribuição.
+
+---
+
+#### Fork
+
+Fork é a cópia de um projeto já postado, podendo ser usado pelo usuário que realizou o FORK sem restrições e com possibilidade de devolver essas alterações até o projeto original.
+
+A forma de devolução é com ```PULL REQUEST```, onde o fork será enviado para análise do criador do repositório
 
 ---
 
