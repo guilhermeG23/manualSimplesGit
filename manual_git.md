@@ -82,6 +82,13 @@ Para uma forma mais resumida, use:
 git log --oneline
 ```
 
+Para mostrar como uma linha de produção, use:
+
+```
+git log --graph
+```
+
+
 ---
 
 Configuração LOCAL e GLOBAL:
@@ -407,6 +414,7 @@ Boas práticas sobre o uso do commit:
 
 * Nunca commit código que não funcione;
 * Só faça isso quando algo é implementado ou alterado com sucesso;
+* Sempre tenha o code final na master/main, sempre use outras linhas para fazer o gerenciamento;
 
 ---
 
@@ -424,3 +432,91 @@ A forma de devolução é com ```PULL REQUEST```, onde o fork será enviado para
 
 ---
 
+#### Trazer alterações para o HEAD com base em um commit 
+
+O comando ```cherry-pick``` é usado para trazer alterações direto para o HEAD (Atual linha de produção), Ex:
+
+```
+git cherry-pick <commit>
+```
+
+---
+
+#### Bisect
+
+Mostar diferenças exatas ente commits, Ex:
+
+```
+PS C:\Users\guilherme\Desktop\teste\t1\t2> git bisect start       
+
+PS C:\Users\guilherme\Desktop\teste\t1\t2> git bisect bad HEAD    
+
+PS C:\Users\guilherme\Desktop\teste\t1\t2> git bisect good ed6bbcb
+Bisecting: 0 revisions left to test after this (roughly 0 steps)
+[772983ae7b56d03fadf98b6adbbac21d9ee30edb] teste atual
+
+PS C:\Users\guilherme\Desktop\teste\t1\t2> git bisect bad
+
+
+PS C:\Users\guilherme\Desktop\teste\t1\t2> git bisect good 
+772983ae7b56d03fadf98b6adbbac21d9ee30edb was both good and bad
+
+PS C:\Users\guilherme\Desktop\teste\t1\t2> git bisect reset
+Previous HEAD position was 772983a teste atual
+Switched to branch 'master'
+Your branch is ahead of 'origin/master' by 8 commits.
+  (use "git push" to publish your local commits)
+```
+
+O bisect retornar o code a um estado de commit anterior, todo o BAD é que a alteração de determinado commit não está valendo, más quando der um good, esse é o commit alvo, para retonar o code da forma que era antes da pesquisa, é só dar um reset e pronto, o code retorna ao estado de commit atual.
+
+---
+
+#### Historico de quem fez
+
+Mostra informações de quem fez algo, quando e oq fez, ex:
+
+```
+PS C:\Users\guilherme\Desktop\teste\t1\t2> git blame .\teste_file
+^e466872 (guilhermeG23 2021-09-12 19:29:43 -0300 1) "" 
+772983ae (guilhermeG23 2021-09-18 19:43:48 -0300 2) "teste"
+772983ae (guilhermeG23 2021-09-18 19:43:48 -0300 3) "1111"
+772983ae (guilhermeG23 2021-09-18 19:43:48 -0300 4) "teste1"
+772983ae (guilhermeG23 2021-09-18 19:43:48 -0300 5) ""
+772983ae (guilhermeG23 2021-09-18 19:43:48 -0300 6) ""
+772983ae (guilhermeG23 2021-09-18 19:43:48 -0300 7) ""
+772983ae (guilhermeG23 2021-09-18 19:43:48 -0300 8) ""
+772983ae (guilhermeG23 2021-09-18 19:43:48 -0300 9) ""
+```
+
+--- 
+
+#### Hora do show
+
+Show é um comando que mostra alteração realizadas num determinado commit, Ex:
+
+```
+PS C:\Users\guilherme\Desktop\teste\t1\t2> git show b3b5736
+commit b3b5736830a012479a13693bb530652cd426e527 (HEAD -> master)
+Author: guilhermeG23 <guilhermebrechot@gmail.com.br>
+Date:   Wed Sep 22 21:20:49 2021 -0300
+
+    teste1
+
+diff --git a/teste_file b/teste_file
+index c382c58..1cc3227 100644
+--- a/teste_file
++++ b/teste_file
+@@ -1,6 +1,4 @@
+ ""
+-<<<<<<< HEAD
+-=======
+ "teste"
+ "1111"
+ "teste1"
+@@ -9,4 +7,3 @@
+ ""
+ ""
+ ""
+->>>>>>> 873f5be (teste teste 1)
+```
