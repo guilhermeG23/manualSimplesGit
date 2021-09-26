@@ -560,3 +560,5 @@ update.sample
 ```
 
 Para eles funcionarem, tem que tirar o ```.sample``` e alterar a permissão para executar.
+
+Exemplo de deploy
