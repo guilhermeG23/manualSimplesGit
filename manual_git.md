@@ -415,6 +415,7 @@ Boas práticas sobre o uso do commit:
 * Nunca commit código que não funcione;
 * Só faça isso quando algo é implementado ou alterado com sucesso;
 * Sempre tenha o code final na master/main, sempre use outras linhas para fazer o gerenciamento;
+* Se um problema aparece na master/main e ele é urgente, não altere, crie uma branch chamada de hotfix/<versao do desenvolvimento ou um nome especifico> para a correção, o merge tambem não é feito direto e sim numa branch de desenvolvimento que irá fazer merge a principal.
 
 ---
 
@@ -520,3 +521,42 @@ index c382c58..1cc3227 100644
  ""
 ->>>>>>> 873f5be (teste teste 1)
 ```
+
+---
+
+#### Organização com Git-Flow
+
+Forma de organizar a linha de produção das branch;
+
+* Master/main -> Linha produção;
+* Hotfix -> Correções da principal, ele é gerado por um erro na master e quando corrigido, a master e o develop recebem um merge para se atualizarem;
+* Develop -> Ambiente de testes;
+* Features -> Novos implementações ao ambiente de teste;
+* Release -> Momento que sai do Dev e vai para o principal, é a linha de testes e correções finais antes do merge a principal, qualquer alterações aqui vão tanto para a master quando para o develop, forá que a mesmasó existe durante a versão, a cada nova tag de versão a mesma é renovada;
+
+![FLOW](flow.png)
+
+---
+
+#### Hooks
+
+Hooks fica dentro de o .git, eles são ações dentro do git, dentro dos hooks, existem vários arquivos com nomes descritivos, Ex:
+
+```
+C:\Users\guilhermebrechot\Desktop\manual_git\.git\hooks>dir
+applypatch-msg.sample
+commit-msg.sample
+fsmonitor-watchman.sample
+post-update.sample
+pre-applypatch.sample
+pre-commit.sample
+pre-merge-commit.sample
+pre-push.sample
+pre-rebase.sample
+pre-receive.sample
+prepare-commit-msg.sample
+push-to-checkout.sample
+update.sample
+```
+
+Para eles funcionarem, tem que tirar o ```.sample``` e alterar a permissão para executar.
